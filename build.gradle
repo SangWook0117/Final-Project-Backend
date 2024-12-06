@@ -1,0 +1,70 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.5'
+    id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.bitcamp'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // jpa
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    // spring bean validation
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    // spring web
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    // Lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    // devtools
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    // MySQL
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    // Spring Boot Test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.18.1'
+
+    // thymeleaf
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    //Webflux
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    // redis
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    // websocket
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    // Security
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    //JWT
+	implementation 'io.jsonwebtoken:jjwt-api:0.12.6'
+	implementation 'io.jsonwebtoken:jjwt-impl:0.12.6'
+	implementation 'io.jsonwebtoken:jjwt-jackson:0.12.6'
+
+    // test
+    testImplementation 'io.projectreactor:reactor-test'
+    testImplementation 'org.testcontainers:junit-jupiter'
+    testImplementation 'org.springframework.boot:spring-boot-testcontainers'
+    testImplementation 'org.testcontainers:mysql'
+}
+
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
