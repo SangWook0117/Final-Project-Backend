@@ -45,6 +45,7 @@ public class SecurityConfig {
         //커스텀 필터 설정 (폼로그인 대신 설정)
         http
             .addFilterBefore(new JWTFilter(jwtUtil), LoginFilter.class);
+            
         http
             .addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration), jwtUtil, refreshRepository), UsernamePasswordAuthenticationFilter.class);
             //내가 만든 LoginFilter.java를 생성해서 등록, addFilterAt은 사용할 필터의 위치를 지정, UsernamePasswordAuthenticationFilter 필터를 대체하는 필터를 설정해주는것 
